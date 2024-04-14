@@ -730,16 +730,8 @@ export class CanvasMap extends BaseElement {
 
     let newZoom;
     if (options.zoom === undefined) {
-      // Calculate a zoom change that keeps this.tileSize * zoom an integer value.
-      // We don't want the canvas to have a zoom in the transform that makes the map tiles
-      // a non integer size or it will cause black border to show around them.
-      const targetTileSize = this.tileSize * options.delta;
-      const delta = Math.round(targetTileSize) / this.tileSize;
-      if (options.delta > 0) {
-        newZoom = Math.min(Math.max(this.camera.zoom.target + delta, this.camera.minZoom), this.camera.maxZoom);
-      } else {
-        newZoom = Math.min(Math.max(this.camera.zoom.target + delta, this.camera.minZoom), this.camera.maxZoom);
-      }
+      // mouse zoom
+      newZoom = Math.min(Math.max(this.camera.zoom.target + options.delta, this.camera.minZoom), this.camera.maxZoom);
     } else {
       // touch zoom
       newZoom = Math.min(Math.max(options.zoom, this.camera.minZoom), this.camera.maxZoom);
