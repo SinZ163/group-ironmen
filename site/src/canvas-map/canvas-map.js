@@ -728,11 +728,7 @@ export class CanvasMap extends BaseElement {
     let newZoom;
     if (options.zoom === undefined) {
       // mouse zoom
-      if (options.delta > 0) {
-        newZoom = Math.min(Math.max(Math.round(this.camera.zoom.target) + 1, this.camera.minZoom), this.camera.maxZoom);
-      } else {
-        newZoom = Math.min(Math.max(Math.round(this.camera.zoom.target) - 1, this.camera.minZoom), this.camera.maxZoom);
-      }
+      newZoom = Math.min(Math.max(this.camera.zoom.target + options.delta, this.camera.minZoom), this.camera.maxZoom);
     } else {
       // touch zoom
       newZoom = Math.min(Math.max(options.zoom, this.camera.minZoom), this.camera.maxZoom);
