@@ -3,7 +3,7 @@ name: Push Backend Docker Image
 on:
   push:
     paths:
-      - 'site/**'
+      - 'server/**'
     branches: [ master ]
 
 env:
